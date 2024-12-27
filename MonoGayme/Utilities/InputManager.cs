@@ -1,7 +1,10 @@
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 namespace MonoGayme.Utilities;
+
+public enum MouseButton { Left, Right, Middle }
 
 public static class InputManager
 {
@@ -10,6 +13,9 @@ public static class InputManager
 
     private static GamePadState _previousControllerState;
     private static GamePadState _currentControllerState;
+    
+    private static MouseState _previousMouseState;
+    private static MouseState _currentMouseState;
 
     static InputManager()
     {
@@ -18,6 +24,9 @@ public static class InputManager
 
         _currentControllerState = GamePad.GetState(PlayerIndex.One);
         _previousControllerState = _currentControllerState;
+        
+        _currentMouseState = Mouse.GetState();
+        _previousMouseState = _currentMouseState;
     }
 
     /// <summary>
@@ -97,7 +106,21 @@ public static class InputManager
         
         return null;
     }
-    
+
+    /// <summary>
+    /// Check if a mouse key is currently being held down.
+    /// </summary>
+    public static bool IsMouseDown(MouseButton button)
+    {
+        return button switch
+        {
+            MouseButton.Left => _currentMouseState.LeftButton == ButtonState.Pressed,
+            MouseButton.Right => _currentMouseState.RightButton == ButtonState.Pressed,
+            MouseButton.Middle => _currentMouseState.MiddleButton == ButtonState.Pressed,
+            _ => false
+        };
+    }
+
     /// <summary>
     /// Update the input device state. Must only be run once a frame.
     /// </summary>
@@ -108,5 +131,8 @@ public static class InputManager
 
         _previousControllerState = _currentControllerState;
         _currentControllerState = GamePad.GetState(PlayerIndex.One);
+        
+        _previousMouseState = _currentMouseState;
+        _currentMouseState = Mouse.GetState();
     }
 }
