@@ -1,10 +1,11 @@
 using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using MonoGayme.Abstractions;
 
 namespace MonoGayme.Components;
 
-public class AnimatedSpriteSheet : Component
+public class AnimatedSprite : Component, IUpdateableComponent, IDrawableComponent
 {
     private readonly Vector2 _origin;
     private readonly Vector2 _frameSize;
@@ -25,7 +26,7 @@ public class AnimatedSpriteSheet : Component
 
     public bool Flipped = false;
 
-    public AnimatedSpriteSheet(Texture2D sprite, Vector2 size, float speed, bool loop = false, Vector2? origin = null)
+    public AnimatedSprite(Texture2D sprite, Vector2 size, float speed, bool loop = false, Vector2? origin = null)
     {
         _origin = origin ?? Vector2.Zero;
         
@@ -46,7 +47,7 @@ public class AnimatedSpriteSheet : Component
         _frame = 0;
     }
 
-    public override void Update(GameTime time)
+    public void Update(GameTime time)
     {
         _frameTimer += (float)time.ElapsedGameTime.TotalSeconds;
         if (!(_frameTimer >= _speed)) return;
@@ -67,7 +68,7 @@ public class AnimatedSpriteSheet : Component
         _source.X = (int)(_frame * _frameSize.X);
     }
 
-    public override void Draw(SpriteBatch batch, Camera2D? camera = null)
+    public void Draw(SpriteBatch batch, Camera2D? camera = null)
     {
         batch.Draw(_sprite, camera?.ScreenToWorld(Parent.Position) ?? Parent.Position, _source, Color.White, 0f, _origin, 1f, Flipped ? SpriteEffects.FlipHorizontally : SpriteEffects.None, 0f);
     }

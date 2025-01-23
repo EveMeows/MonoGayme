@@ -5,13 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using MonoGayme.Abstractions;
 
 namespace MonoGayme.Components;
 
 /// <summary>
 /// Create a new 2D Sprite component.
 /// </summary>
-public class Sprite : Component
+public class Sprite : Component, IDrawableComponent
 {
     public bool Flipped;
     public Texture2D Texture;
@@ -39,7 +40,7 @@ public class Sprite : Component
     public void ResetPosition()
         => Position = null;
 
-    public override void Draw(SpriteBatch batch, Camera2D? camera = null)
+    public void Draw(SpriteBatch batch, Camera2D? camera = null)
     {
         Vector2 pos = Position ?? Parent.Position;
         batch.Draw(Texture, camera?.ScreenToWorld(pos) ?? pos, null, Tint, Rotation, Origin, Scale, Flipped ? SpriteEffects.FlipHorizontally : SpriteEffects.None, 0);

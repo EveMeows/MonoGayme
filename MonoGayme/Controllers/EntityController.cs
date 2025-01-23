@@ -19,7 +19,7 @@ public class EntityController : Component
     /// <summary>
     /// Add an entity to the controller, and begin sorting by ZIndex.
     /// </summary>
-    public void AddEntity<T>(T entity) where T : Entity
+    public void Add<T>(T entity) where T : Entity
     {
         entity.LoadContent();
         Entities.Add(entity);
@@ -44,7 +44,7 @@ public class EntityController : Component
     /// <summary>
     /// Updates each entity, then removes any queried entities. 
     /// </summary>
-    public void UpdateEntities(GraphicsDevice device, GameTime gameTime)
+    public void Update(GraphicsDevice device, GameTime gameTime)
     {
         if (_sort)
         {
@@ -54,7 +54,7 @@ public class EntityController : Component
 
         foreach (Entity entity in Entities)
         {
-            entity.Update(gameTime);
+            entity.Process(gameTime);
             OnEntityUpdate?.Invoke(device, gameTime, entity);
         }
 
@@ -68,9 +68,11 @@ public class EntityController : Component
     /// <summary>
     /// Draw each entity to the screen. 
     /// </summary>
-    public void DrawEntities(SpriteBatch batch, GameTime gameTime)
+    public void Draw(SpriteBatch batch, GameTime gameTime)
     {
         foreach (Entity entity in Entities)
-            entity.Draw(batch, gameTime);
+        { 
+            entity.Render(batch, gameTime);
+        }
     }
 }

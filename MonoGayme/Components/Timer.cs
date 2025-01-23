@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using MonoGayme.Abstractions;
 using System;
 
 namespace MonoGayme.Components;
@@ -6,7 +7,7 @@ namespace MonoGayme.Components;
 /// <summary>
 ///  Create a new Timer.
 /// </summary>
-public class Timer : Component
+public class Timer : Component, IUpdateableComponent
 {
     private float _timer;
     private float _time;
@@ -23,7 +24,7 @@ public class Timer : Component
         Name = name;
     }
 
-    public override void Update(GameTime gameTime)
+    public void Update(GameTime gameTime)
     {
         if (!Enabled) return;
         _timer += (float)gameTime.ElapsedGameTime.TotalSeconds;

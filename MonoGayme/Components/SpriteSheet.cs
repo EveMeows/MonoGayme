@@ -1,9 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using MonoGayme.Abstractions;
 
 namespace MonoGayme.Components;
 
-public class SpriteSheet : Component
+public class SpriteSheet : Component, IDrawableComponent
 {
     private readonly Texture2D _sprite;
 
@@ -30,7 +31,7 @@ public class SpriteSheet : Component
         _sprite = sprite;
     }
 
-    public override void Draw(SpriteBatch batch, Camera2D? camera = null)
+    public void Draw(SpriteBatch batch, Camera2D? camera = null)
     {
         batch.Draw(_sprite, camera?.ScreenToWorld(Parent.Position) ?? Parent.Position, _source, Color.White, 0, _origin, 1, SpriteEffects.None, 0);
     }

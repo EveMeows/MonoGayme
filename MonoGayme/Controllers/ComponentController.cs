@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using MonoGayme.Abstractions;
 using MonoGayme.Components;
 using MonoGayme.Entities;
 
@@ -13,31 +14,37 @@ public class ComponentController(Entity parent)
     public void Update(GameTime time)
     {
         foreach (Component component in Components)
-            component.Update(time);
+        { 
+            if (component is IUpdateableComponent updateable)
+                updateable.Update(time);
+        }
     }
 
     public void Draw(SpriteBatch batch)
-    { 
-        foreach(Component component in Components)
-            component.Draw(batch);
+    {
+        foreach (Component component in Components)
+        { 
+            if (component is IDrawableComponent drawable)
+                drawable.Draw(batch);
+        }
     }
 
-    public void AddComponent(Component component)
+    public void Add(Component component)
     {
-        component.SetParent(parent);
+        component.Parent = parent;
         Components.Add(component);
     }
 
     /// <summary>
     /// Get the first component with a matching type.
     /// </summary>
-    public T? GetComponent<T>() where T : Component
+    public T? Get<T>() where T : Component
         => (T?)Components.Find(c => c is T);
 
     /// <summary>
     /// Get a component based on it's name
     /// </summary>
-    public T? GetComponent<T>(string name) where T : Component
+    public T? Get<T>(string name) where T : Component
         => (T?)Components.Find(c => c.Name == name);
 
     /// <summary>
