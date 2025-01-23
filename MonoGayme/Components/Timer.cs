@@ -23,7 +23,7 @@ public class Timer : Component
         Name = name;
     }
 
-    public void Cycle(GameTime gameTime)
+    public override void Update(GameTime gameTime)
     {
         if (!Enabled) return;
         _timer += (float)gameTime.ElapsedGameTime.TotalSeconds;

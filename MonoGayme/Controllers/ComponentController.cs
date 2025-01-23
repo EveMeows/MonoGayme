@@ -1,14 +1,32 @@
 ﻿using System.Collections.Generic;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using MonoGayme.Components;
+using MonoGayme.Entities;
 
 namespace MonoGayme.Controllers;
 
-public class ComponentController
+public class ComponentController(Entity parent)
 {
     public List<Component> Components { get; } = [];
 
+    public void Update(GameTime time)
+    {
+        foreach (Component component in Components)
+            component.Update(time);
+    }
+
+    public void Draw(SpriteBatch batch)
+    { 
+        foreach(Component component in Components)
+            component.Draw(batch);
+    }
+
     public void AddComponent(Component component)
-        => Components.Add(component);
+    {
+        component.SetParent(parent);
+        Components.Add(component);
+    }
 
     /// <summary>
     /// Get the first component with a matching type.

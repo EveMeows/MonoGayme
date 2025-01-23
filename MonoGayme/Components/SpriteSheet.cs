@@ -30,9 +30,9 @@ public class SpriteSheet : Component
         _sprite = sprite;
     }
 
-    public void Draw(SpriteBatch batch, Vector2 position, Camera2D? camera = null)
+    public override void Draw(SpriteBatch batch, Camera2D? camera = null)
     {
-        batch.Draw(_sprite, camera?.ScreenToWorld(position) ?? position, _source, Color.White, 0, _origin, 1, SpriteEffects.None, 0);
+        batch.Draw(_sprite, camera?.ScreenToWorld(Parent.Position) ?? Parent.Position, _source, Color.White, 0, _origin, 1, SpriteEffects.None, 0);
     }
 
     /// <summary>

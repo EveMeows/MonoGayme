@@ -23,6 +23,8 @@ public class AnimatedSpriteSheet : Component
 
     public Action? OnSheetFinished;
 
+    public bool Flipped = false;
+
     public AnimatedSpriteSheet(Texture2D sprite, Vector2 size, float speed, bool loop = false, Vector2? origin = null)
     {
         _origin = origin ?? Vector2.Zero;
@@ -44,7 +46,7 @@ public class AnimatedSpriteSheet : Component
         _frame = 0;
     }
 
-    public void CycleAnimation(GameTime time)
+    public override void Update(GameTime time)
     {
         _frameTimer += (float)time.ElapsedGameTime.TotalSeconds;
         if (!(_frameTimer >= _speed)) return;
@@ -65,9 +67,9 @@ public class AnimatedSpriteSheet : Component
         _source.X = (int)(_frame * _frameSize.X);
     }
 
-    public void Draw(SpriteBatch batch, Vector2 pos, bool flipped = false)
+    public override void Draw(SpriteBatch batch, Camera2D? camera = null)
     {
-        batch.Draw(_sprite, pos, _source, Color.White, 0f, _origin, 1f, flipped ? SpriteEffects.FlipHorizontally : SpriteEffects.None, 0f);
+        batch.Draw(_sprite, camera?.ScreenToWorld(Parent.Position) ?? Parent.Position, _source, Color.White, 0f, _origin, 1f, Flipped ? SpriteEffects.FlipHorizontally : SpriteEffects.None, 0f);
     }
 
     public int Width => (int)_frameSize.X;

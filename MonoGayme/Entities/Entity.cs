@@ -9,7 +9,7 @@ public abstract class Entity(int zIndex = 0)
 {
     public readonly int ZIndex = zIndex;
 
-    public readonly ComponentController Components = new ComponentController();
+    public readonly ComponentController Components = new ComponentController(this);
 
     public Vector2 Position = Vector2.Zero;
     public Vector2 Velocity = Vector2.Zero;
