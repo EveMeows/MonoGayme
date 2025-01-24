@@ -44,8 +44,8 @@ public class Renderer(Vector2 size, GraphicsDevice graphics) {
             batch.Draw(
                 _renderer,
                 new Rectangle(
-                    (int)((graphics.Viewport.Width - (size.X * scale)) / 2),
-                    (int)((graphics.Viewport.Height - (size.Y * scale)) / 2),
+                    (int)((graphics.Viewport.Width - (size.X * scale)) * 0.5f),
+                    (int)((graphics.Viewport.Height - (size.Y * scale)) * 0.5f),
                     (int)(size.X * scale),
                     (int)(size.Y * scale)
                 ),
@@ -62,8 +62,8 @@ public class Renderer(Vector2 size, GraphicsDevice graphics) {
         Vector2 position = Mouse.GetState().Position.ToVector2();
         
         float scale = GetScale();
-        float virtualMouseX = (position.X - ((graphics.Viewport.Width - (size.X * scale)) / 2)) / scale;
-        float virtualMouseY = (position.Y - ((graphics.Viewport.Height - (size.Y * scale)) / 2)) / scale;
+        float virtualMouseX = (position.X - ((graphics.Viewport.Width - (size.X * scale)) * 0.5f)) / scale;
+        float virtualMouseY = (position.Y - ((graphics.Viewport.Height - (size.Y * scale)) * 0.5f)) / scale;
 
         return new Vector2(
             MathHelper.Clamp(virtualMouseX, 0, size.X),

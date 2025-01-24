@@ -4,8 +4,8 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGayme.Components;
+using MonoGayme.Input;
 using MonoGayme.UI;
-using MonoGayme.Utilities;
 
 namespace MonoGayme.Controllers;
 
@@ -113,10 +113,10 @@ public class UIController(bool allowNavigation)
 
         if (_gpDown.HasValue && _gpUp.HasValue && _gpAccept.HasValue)
         {
-            if (InputManager.IsGamePadPressed(_gpAccept.Value))
+            if (InputHelper.IsGamePadPressed(_gpAccept.Value))
                 _elements[_activeIdx].RunAction();
 
-            if (InputManager.IsGamePadPressed(_gpUp.Value))
+            if (InputHelper.IsGamePadPressed(_gpUp.Value))
             {
                 OnActiveUpdating?.Invoke(_elements[_activeIdx]);
 
@@ -127,7 +127,7 @@ public class UIController(bool allowNavigation)
                 OnActiveUpdated?.Invoke(_elements[_activeIdx]);
             }
 
-            if (InputManager.IsGamePadPressed(_gpDown.Value))
+            if (InputHelper.IsGamePadPressed(_gpDown.Value))
             {
                 OnActiveUpdating?.Invoke(_elements[_activeIdx]);
 
@@ -141,10 +141,10 @@ public class UIController(bool allowNavigation)
 
         if (_kbDown.HasValue && _kbUp.HasValue && _kbAccept.HasValue)
         {
-            if (InputManager.IsKeyPressed(_kbAccept.Value))
+            if (InputHelper.IsKeyPressed(_kbAccept.Value))
                 _elements[_activeIdx].RunAction();
 
-            if (InputManager.IsKeyPressed(_kbUp.Value))
+            if (InputHelper.IsKeyPressed(_kbUp.Value))
             {
                 OnActiveUpdating?.Invoke(_elements[_activeIdx]);
 
@@ -155,7 +155,7 @@ public class UIController(bool allowNavigation)
                 OnActiveUpdated?.Invoke(_elements[_activeIdx]);
             }
 
-            if (InputManager.IsKeyPressed(_kbDown.Value))
+            if (InputHelper.IsKeyPressed(_kbDown.Value))
             {
                 OnActiveUpdating?.Invoke(_elements[_activeIdx]);
 

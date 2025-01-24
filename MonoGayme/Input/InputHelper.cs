@@ -2,29 +2,27 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace MonoGayme.Utilities;
+namespace MonoGayme.Input;
 
-public enum MouseButton { Left, Right, Middle }
-
-public static class InputManager
+public static class InputHelper
 {
     private static KeyboardState _previousState;
     private static KeyboardState _currentState;
 
     private static GamePadState _previousControllerState;
     private static GamePadState _currentControllerState;
-    
+
     private static MouseState _previousMouseState;
     private static MouseState _currentMouseState;
 
-    static InputManager()
+    static InputHelper()
     {
         _currentState = Keyboard.GetState();
         _previousState = _currentState;
 
         _currentControllerState = GamePad.GetState(PlayerIndex.One);
         _previousControllerState = _currentControllerState;
-        
+
         _currentMouseState = Mouse.GetState();
         _previousMouseState = _currentMouseState;
     }
@@ -33,7 +31,7 @@ public static class InputManager
     /// Check if a key is being held down continuously.
     /// </summary>
     public static bool IsKeyDown(Keys key) => _currentState[key] == KeyState.Down;
-    
+
     /// <summary>
     /// Check if a key is not currently held down.
     /// </summary>
@@ -42,7 +40,7 @@ public static class InputManager
     /// <summary>
     /// Check if a key has been pressed.
     /// </summary>
-    public static bool IsKeyPressed(Keys key) =>_currentState.IsKeyDown(key) && _previousState.IsKeyUp(key);
+    public static bool IsKeyPressed(Keys key) => _currentState.IsKeyDown(key) && _previousState.IsKeyUp(key);
 
     /// <summary>
     /// Get first pressed key on the keyboard.
@@ -55,12 +53,12 @@ public static class InputManager
 
         return null;
     }
-    
+
     /// <summary>
     /// Check if a controller button is down.
     /// </summary>
     public static bool IsGamePadDown(Buttons btn) => _currentControllerState.IsButtonDown(btn);
-    
+
     /// <summary>
     /// Check if a controller button is up.
     /// </summary>
@@ -92,7 +90,7 @@ public static class InputManager
         if (_currentControllerState.DPad.Down == ButtonState.Pressed) return Buttons.DPadDown;
         if (_currentControllerState.DPad.Left == ButtonState.Pressed) return Buttons.DPadLeft;
         if (_currentControllerState.DPad.Right == ButtonState.Pressed) return Buttons.DPadRight;
-        
+
         if (_currentControllerState.Triggers.Left > 0.5f) return Buttons.LeftTrigger;
         if (_currentControllerState.Triggers.Right > 0.5f) return Buttons.RightTrigger;
         if (_currentControllerState.ThumbSticks.Left.X < -0.5f) return Buttons.LeftThumbstickLeft;
@@ -103,7 +101,7 @@ public static class InputManager
         if (_currentControllerState.ThumbSticks.Right.X > 0.5f) return Buttons.RightThumbstickRight;
         if (_currentControllerState.ThumbSticks.Right.Y < -0.5f) return Buttons.RightThumbstickDown;
         if (_currentControllerState.ThumbSticks.Right.Y > 0.5f) return Buttons.RightThumbstickUp;
-        
+
         return null;
     }
 
@@ -121,6 +119,17 @@ public static class InputManager
         };
     }
 
+    public static bool IsMousePressed(MouseButton button)
+    { 
+         return button switch
+        {
+            MouseButton.Left => _currentMouseState.LeftButton == ButtonState.Pressed && _previousMouseState.LeftButton == ButtonState.Released,
+            MouseButton.Right => _currentMouseState.RightButton == ButtonState.Pressed && _previousMouseState.RightButton == ButtonState.Released,
+            MouseButton.Middle => _currentMouseState.MiddleButton == ButtonState.Pressed && _previousMouseState.MiddleButton == ButtonState.Released,
+            _ => false
+        };   
+    }
+
     /// <summary>
     /// Update the input device state. Must only be run once a frame.
     /// </summary>
@@ -131,7 +140,7 @@ public static class InputManager
 
         _previousControllerState = _currentControllerState;
         _currentControllerState = GamePad.GetState(PlayerIndex.One);
-        
+
         _previousMouseState = _currentMouseState;
         _currentMouseState = Mouse.GetState();
     }

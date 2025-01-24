@@ -23,6 +23,8 @@ public class Sprite : Component, IDrawableComponent
 
     public Vector2? Position = null;
 
+    public bool ExactPosition { get; set; } = false;
+
     public Sprite(Texture2D texture, float scale = 1, bool flipped = false, float rotation = 0, Color? tint = null, Vector2? origin = null, string? name = null) 
     {
         Flipped = flipped;
@@ -43,6 +45,9 @@ public class Sprite : Component, IDrawableComponent
     public void Draw(SpriteBatch batch, Camera2D? camera = null)
     {
         Vector2 pos = Position ?? Parent.Position;
-        batch.Draw(Texture, camera?.ScreenToWorld(pos) ?? pos, null, Tint, Rotation, Origin, Scale, Flipped ? SpriteEffects.FlipHorizontally : SpriteEffects.None, 0);
+        Vector2 relativePosition = camera?.ScreenToWorld(pos) ?? pos;
+        if (ExactPosition) relativePosition.Floor();
+
+        batch.Draw(Texture, relativePosition, null, Tint, Rotation, Origin, Scale, Flipped ? SpriteEffects.FlipHorizontally : SpriteEffects.None, 0);
     }
 }
