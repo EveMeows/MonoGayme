@@ -1,5 +1,3 @@
-using System;
-
 namespace MonoGayme.Extensions;
 
 public static partial class Extensions

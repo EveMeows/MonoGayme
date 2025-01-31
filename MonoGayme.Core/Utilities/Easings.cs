@@ -1,5 +1,3 @@
-using System;
-
 namespace MonoGayme.Core.Utilities;
 
 public static class Easings

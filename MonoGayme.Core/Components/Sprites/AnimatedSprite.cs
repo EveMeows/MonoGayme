@@ -1,8 +1,6 @@
-using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGayme.Core.Abstractions;
-using MonoGayme.Core.Components;
 
 namespace MonoGayme.Core.Components.Sprites;
 

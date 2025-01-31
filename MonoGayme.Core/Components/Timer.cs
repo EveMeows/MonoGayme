@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using MonoGayme.Core.Abstractions;
-using System;
 
 namespace MonoGayme.Core.Components;
 

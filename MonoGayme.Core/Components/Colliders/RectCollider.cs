@@ -1,5 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using MonoGayme.Core.Components;
 using MonoGayme.Core.Utilities;
 
 namespace MonoGayme.Core.Components.Colliders;

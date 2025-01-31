@@ -1,6 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using MonoGayme.Core.Entities;
+﻿using MonoGayme.Core.Entities;
 
 namespace MonoGayme.Core.Components;
 
