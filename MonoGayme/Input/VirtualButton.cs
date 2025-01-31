@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Input;
 
-namespace MonoGayme.Input;
+namespace MonoGayme.Core.Input;
 
 public class VirtualButton
 {
@@ -28,18 +28,18 @@ public class VirtualButton
             case ButtonType.Keyboard:
                 foreach (Keys key in _keyboard)
                     if (InputHelper.IsKeyDown(key)) return true;
-            break;
-            
+                break;
+
             case ButtonType.GamePad:
                 foreach (Buttons button in _buttons)
                     if (InputHelper.IsGamePadDown(button)) return true;
-            break;
+                break;
 
             case ButtonType.Mouse:
                 foreach (MouseButton button in _mouseButtons)
                     if (InputHelper.IsMouseDown(button)) return true;
-            break;
-            
+                break;
+
             case ButtonType.All:
                 foreach (Keys key in _keyboard)
                     if (InputHelper.IsKeyDown(key)) return true;
@@ -49,8 +49,8 @@ public class VirtualButton
 
                 foreach (MouseButton button in _mouseButtons)
                     if (InputHelper.IsMouseDown(button)) return true;
-            break;
-            
+                break;
+
             default:
                 return false;
         }
@@ -65,17 +65,17 @@ public class VirtualButton
             case ButtonType.Keyboard:
                 foreach (Keys key in _keyboard)
                     if (InputHelper.IsKeyPressed(key)) return true;
-            break;
+                break;
 
             case ButtonType.GamePad:
                 foreach (Buttons button in _buttons)
                     if (InputHelper.IsGamePadPressed(button)) return true;
-            break;
+                break;
 
             case ButtonType.Mouse:
                 foreach (MouseButton button in _mouseButtons)
                     if (InputHelper.IsMousePressed(button)) return true;
-            break;
+                break;
 
             case ButtonType.All:
                 foreach (Keys key in _keyboard)
@@ -87,7 +87,7 @@ public class VirtualButton
 
                 foreach (MouseButton button in _mouseButtons)
                     if (InputHelper.IsMousePressed(button)) return true;
-            break;
+                break;
 
             default:
                 return false;

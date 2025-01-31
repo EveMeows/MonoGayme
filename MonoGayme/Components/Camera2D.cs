@@ -1,6 +1,6 @@
 using Microsoft.Xna.Framework;
 
-namespace MonoGayme.Components;
+namespace MonoGayme.Core.Components;
 
 public class Camera2D : Component
 {
@@ -39,20 +39,7 @@ public class Camera2D : Component
     public Vector2 ScreenToWorld(Vector2 position)
         => Vector2.Transform(position, Matrix.Invert(_transform));
 
-    /// <summary>
-    /// I do not recommend Setting this value.
-    /// </summary>
-    public Matrix Transform
-    {
-        get => _transform;
-        set
-        {
-            if (value == _transform) return;
-
-            _transform = value;
-            UpdateMatrices();
-        }
-    }
+    public Matrix Transform => _transform;
 
     public float Zoom
     {
@@ -66,7 +53,8 @@ public class Camera2D : Component
         }
     }
 
-    public Vector2 Origin {
+    public Vector2 Origin
+    {
         get => _origin;
         set
         {
@@ -77,7 +65,8 @@ public class Camera2D : Component
         }
     }
 
-    public Vector2 Position {
+    public Vector2 Position
+    {
         get => _position;
         set
         {
@@ -88,7 +77,8 @@ public class Camera2D : Component
         }
     }
 
-    public float X {
+    public float X
+    {
         get => _position.X;
         set
         {
@@ -99,7 +89,8 @@ public class Camera2D : Component
         }
     }
 
-    public float Y {
+    public float Y
+    {
         get => _position.Y;
         set
         {

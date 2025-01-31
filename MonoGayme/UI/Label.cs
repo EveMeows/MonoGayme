@@ -1,8 +1,8 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MonoGayme.Components;
+using MonoGayme.Core.Components;
 
-namespace MonoGayme.UI;
+namespace MonoGayme.Core.UI;
 
 public class Label(string text, Color colour, SpriteFont font, Vector2 position) : IElement
 {

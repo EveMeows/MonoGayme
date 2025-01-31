@@ -1,8 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
-using MonoGayme.Abstractions;
+using MonoGayme.Core.Abstractions;
 using System;
 
-namespace MonoGayme.Components;
+namespace MonoGayme.Core.Components;
 
 /// <summary>
 ///  Create a new Timer.
@@ -28,10 +28,10 @@ public class Timer : Component, IUpdateableComponent
     {
         if (!Enabled) return;
         _timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
-        
+
         if (!(_timer >= _time)) return;
         _timer = 0;
-        
+
         if (_oneShot)
             Enabled = false;
 

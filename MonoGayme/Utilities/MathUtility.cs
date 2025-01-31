@@ -1,7 +1,7 @@
 using System;
 using Microsoft.Xna.Framework;
 
-namespace MonoGayme.Utilities;
+namespace MonoGayme.Core.Utilities;
 
 /// <summary>
 /// Global class for misc. math methods.
@@ -24,7 +24,7 @@ public static class MathUtility
 
     public static Vector2 MoveTowards(Vector2 from, Vector2 to, float delta)
     {
-        if ((to - from).Length() <= delta) 
+        if ((to - from).Length() <= delta)
             return to;
 
         return from + Vector2.Normalize(to - from) * delta;

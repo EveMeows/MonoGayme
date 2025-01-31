@@ -1,9 +1,9 @@
 using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MonoGayme.Components;
+using MonoGayme.Core.Components;
 
-namespace MonoGayme.UI;
+namespace MonoGayme.Core.UI;
 
 public abstract class Button(bool ignoreMouse) : IElement
 {

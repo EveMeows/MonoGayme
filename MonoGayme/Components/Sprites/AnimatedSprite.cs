@@ -1,9 +1,10 @@
 using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MonoGayme.Abstractions;
+using MonoGayme.Core.Abstractions;
+using MonoGayme.Core.Components;
 
-namespace MonoGayme.Components;
+namespace MonoGayme.Core.Components.Sprites;
 
 public class AnimatedSprite : Component, IUpdateableComponent, IDrawableComponent
 {
@@ -11,7 +12,7 @@ public class AnimatedSprite : Component, IUpdateableComponent, IDrawableComponen
     private readonly Vector2 _frameSize;
     private readonly Texture2D _sprite;
 
-    private readonly Vector2 _frameCount; 
+    private readonly Vector2 _frameCount;
 
     private Rectangle _source;
 
@@ -29,8 +30,8 @@ public class AnimatedSprite : Component, IUpdateableComponent, IDrawableComponen
     public AnimatedSprite(Texture2D sprite, Vector2 size, float speed, bool loop = false, Vector2? origin = null)
     {
         _origin = origin ?? Vector2.Zero;
-        
-        _frameCount = size; 
+
+        _frameCount = size;
         _sprite = sprite;
 
         _speed = speed;
@@ -58,7 +59,8 @@ public class AnimatedSprite : Component, IUpdateableComponent, IDrawableComponen
         {
             _frame = 0;
 
-            if (!Loop) {
+            if (!Loop)
+            {
                 Finished = true;
             }
 

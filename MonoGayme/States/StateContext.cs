@@ -1,7 +1,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace MonoGayme.States;
+namespace MonoGayme.Core.States;
 
 /// <summary>
 /// Helper class used for Game State handling.
@@ -17,5 +17,5 @@ public class StateContext
     }
 
     public void Update(GameTime time) => _activeState?.Update(time);
-    public void Draw(GameTime time, SpriteBatch batch) => _activeState?.Draw(time, batch); 
+    public void Draw(GameTime time, SpriteBatch batch) => _activeState?.Draw(time, batch);
 }

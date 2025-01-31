@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MonoGayme.Input;
+namespace MonoGayme.Core.Input;
 
-public enum MouseButton { 
+public enum MouseButton
+{
     Left,
     Right,
     Middle

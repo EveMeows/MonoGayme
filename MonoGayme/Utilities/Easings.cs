@@ -1,6 +1,6 @@
 using System;
 
-namespace MonoGayme.Utilities;
+namespace MonoGayme.Core.Utilities;
 
 public static class Easings
 {

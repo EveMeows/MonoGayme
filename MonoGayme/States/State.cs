@@ -1,7 +1,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace MonoGayme.States;
+namespace MonoGayme.Core.States;
 
 /// <summary>
 /// Creates a new Game State.

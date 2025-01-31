@@ -5,9 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MonoGayme.Abstractions;
+using MonoGayme.Core.Abstractions;
+using MonoGayme.Core.Components;
 
-namespace MonoGayme.Components;
+namespace MonoGayme.Core.Components.Sprites;
 
 /// <summary>
 /// Create a new 2D Sprite component.
@@ -25,7 +26,7 @@ public class Sprite : Component, IDrawableComponent
 
     public bool ExactPosition { get; set; } = false;
 
-    public Sprite(Texture2D texture, float scale = 1, bool flipped = false, float rotation = 0, Color? tint = null, Vector2? origin = null, string? name = null) 
+    public Sprite(Texture2D texture, float scale = 1, bool flipped = false, float rotation = 0, Color? tint = null, Vector2? origin = null, string? name = null)
     {
         Flipped = flipped;
         Texture = texture;

@@ -1,8 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MonoGayme.Entities;
+using MonoGayme.Core.Entities;
 
-namespace MonoGayme.Components;
+namespace MonoGayme.Core.Components;
 
 public abstract class Component
 {

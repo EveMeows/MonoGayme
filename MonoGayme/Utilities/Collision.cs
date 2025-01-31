@@ -1,6 +1,6 @@
 using Microsoft.Xna.Framework;
 
-namespace MonoGayme.Utilities;
+namespace MonoGayme.Core.Utilities;
 
 public static class Collision
 {

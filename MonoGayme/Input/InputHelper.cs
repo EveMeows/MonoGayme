@@ -2,7 +2,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace MonoGayme.Input;
+namespace MonoGayme.Core.Input;
 
 public static class InputHelper
 {
@@ -120,14 +120,14 @@ public static class InputHelper
     }
 
     public static bool IsMousePressed(MouseButton button)
-    { 
-         return button switch
+    {
+        return button switch
         {
             MouseButton.Left => _currentMouseState.LeftButton == ButtonState.Pressed && _previousMouseState.LeftButton == ButtonState.Released,
             MouseButton.Right => _currentMouseState.RightButton == ButtonState.Pressed && _previousMouseState.RightButton == ButtonState.Released,
             MouseButton.Middle => _currentMouseState.MiddleButton == ButtonState.Pressed && _previousMouseState.MiddleButton == ButtonState.Released,
             _ => false
-        };   
+        };
     }
 
     /// <summary>

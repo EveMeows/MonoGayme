@@ -1,7 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
-using MonoGayme.Utilities;
+using MonoGayme.Core.Components;
+using MonoGayme.Core.Utilities;
 
-namespace MonoGayme.Components.Colliders;
+namespace MonoGayme.Core.Components.Colliders;
 
 public class RectCollider : Component
 {

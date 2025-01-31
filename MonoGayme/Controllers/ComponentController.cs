@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MonoGayme.Abstractions;
-using MonoGayme.Components;
-using MonoGayme.Entities;
+using MonoGayme.Core.Abstractions;
+using MonoGayme.Core.Components;
+using MonoGayme.Core.Entities;
 
-namespace MonoGayme.Controllers;
+namespace MonoGayme.Core.Controllers;
 
 public class ComponentController(Entity parent)
 {
@@ -14,7 +14,7 @@ public class ComponentController(Entity parent)
     public void Update(GameTime time)
     {
         foreach (Component component in Components)
-        { 
+        {
             if (component is IUpdateableComponent updateable)
                 updateable.Update(time);
         }
@@ -23,7 +23,7 @@ public class ComponentController(Entity parent)
     public void Draw(SpriteBatch batch)
     {
         foreach (Component component in Components)
-        { 
+        {
             if (component is IDrawableComponent drawable)
                 drawable.Draw(batch);
         }

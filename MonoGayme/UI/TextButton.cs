@@ -2,10 +2,10 @@ using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using MonoGayme.Components;
-using MonoGayme.Utilities;
+using MonoGayme.Core.Components;
+using MonoGayme.Core.Utilities;
 
-namespace MonoGayme.UI;
+namespace MonoGayme.Core.UI;
 
 public class TextButton : Button
 {
@@ -31,7 +31,7 @@ public class TextButton : Button
         _text = text;
         Colour = colour;
         Position = position;
-        
+
         _ignoreMouse = ignoreMouse;
     }
 
@@ -64,14 +64,14 @@ public class TextButton : Button
     public override void Update(Vector2 mouse)
     {
         if (_ignoreMouse) return;
-        
+
         if (Collision.CheckRectPoint(mouse, _rect))
         {
             if (Mouse.GetState().LeftButton == ButtonState.Pressed)
                 _holding = true;
 
             if (Mouse.GetState().LeftButton != ButtonState.Released || !_holding) return;
-            
+
             RunAction();
             _holding = false;
         }
@@ -80,7 +80,7 @@ public class TextButton : Button
             _holding = false;
         }
     }
-    
+
     public override void Draw(SpriteBatch batch, Camera2D? camera)
     {
         Vector2 pos = Position;

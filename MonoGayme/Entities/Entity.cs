@@ -1,9 +1,9 @@
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MonoGayme.Controllers;
+using MonoGayme.Core.Controllers;
 
-namespace MonoGayme.Entities;
+namespace MonoGayme.Core.Entities;
 
 public abstract class Entity
 {
@@ -26,7 +26,7 @@ public abstract class Entity
     public abstract void Draw(SpriteBatch batch, GameTime time);
 
     public void Process(GameTime time)
-    { 
+    {
         Components.Update(time);
         Update(time);
     }

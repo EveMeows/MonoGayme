@@ -1,13 +1,13 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MonoGayme.Components;
+using MonoGayme.Core.Components;
 
-namespace MonoGayme.UI;
+namespace MonoGayme.Core.UI;
 
-public interface IElement 
+public interface IElement
 {
     Color Colour { get; set; }
-    
+
     void RunAction();
 
     void Update(Vector2 mouse);

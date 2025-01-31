@@ -1,8 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MonoGayme.Abstractions;
+using MonoGayme.Core.Abstractions;
+using MonoGayme.Core.Components;
 
-namespace MonoGayme.Components;
+namespace MonoGayme.Core.Components.Sprites;
 
 public class SpriteSheet : Component, IDrawableComponent
 {
@@ -18,7 +19,7 @@ public class SpriteSheet : Component, IDrawableComponent
     private readonly bool _wrap;
 
     public SpriteSheet(Texture2D sprite, Vector2 frameCount, bool wrap = false, Vector2? origin = null)
-    { 
+    {
         _origin = origin ?? Vector2.Zero;
         _frameCount = frameCount;
 
@@ -40,13 +41,13 @@ public class SpriteSheet : Component, IDrawableComponent
     /// Increment the cell by its Y axis.
     /// </summary>
     /// <param name="increment">How many times should it should be incremented by.</param>
-    public void IncrementX(int increment = 1) {}
+    public void IncrementX(int increment = 1) { }
 
     /// <summary>
     /// Decrement the cell by its X axis.
     /// </summary>
     /// <param name="decrement">How many times it should be decremented by.</param>
-    public void DecrementX(int decrement = 1) {}
+    public void DecrementX(int decrement = 1) { }
 
     /// <summary>
     /// Increment the cell by its Y axis.
@@ -62,7 +63,7 @@ public class SpriteSheet : Component, IDrawableComponent
                 _source.Y = 0;
                 return;
             }
-    
+
             value = (int)_frameSize.Y;
         }
 

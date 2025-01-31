@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using MonoGayme.Components;
-using MonoGayme.Input;
-using MonoGayme.UI;
+using MonoGayme.Core.Components;
+using MonoGayme.Core.Input;
+using MonoGayme.Core.UI;
 
-namespace MonoGayme.Controllers;
+namespace MonoGayme.Core.Controllers;
 
 public class UIController(bool allowNavigation)
 {
     private readonly List<IElement> _elements = [];
     private readonly List<IElement> _ignored = [];
     private readonly HashSet<IElement> _toRemove = [];
-    
+
     private Keys? _kbUp;
     private Keys? _kbDown;
     private Keys? _kbAccept;
@@ -76,20 +76,20 @@ public class UIController(bool allowNavigation)
             OnActiveUpdated?.Invoke(_elements[_activeIdx]);
         }
     }
-    
+
     /// <summary>
     /// Add a UI Element to the UI Controller, these are ignored by the navigator.
     /// </summary>
     public void AddIgnored<TIgnored>(TIgnored element) where TIgnored : IElement
         => _ignored.Add(element);
-    
+
     public void QueueRemoveAll()
     {
         foreach (IElement element in _elements)
             _toRemove.Add(element);
 
         foreach (IElement element in _ignored)
-            _toRemove.Add(element);        
+            _toRemove.Add(element);
     }
 
     public void Update(Vector2 mouse)
@@ -99,7 +99,7 @@ public class UIController(bool allowNavigation)
 
         foreach (IElement element in _elements)
             element.Update(mouse);
-        
+
         foreach (IElement element in _ignored)
             element.Update(mouse);
 
@@ -108,7 +108,7 @@ public class UIController(bool allowNavigation)
             _elements.RemoveAll(_toRemove.Contains);
             _toRemove.Clear();
         }
-        
+
         if (!allowNavigation) return;
 
         if (_gpDown.HasValue && _gpUp.HasValue && _gpAccept.HasValue)
@@ -167,12 +167,12 @@ public class UIController(bool allowNavigation)
             }
         }
     }
-    
+
     public void Draw(SpriteBatch batch, Camera2D? camera = null)
     {
         foreach (IElement element in _elements)
             element.Draw(batch, camera);
-        
+
         foreach (IElement element in _ignored)
             element.Draw(batch, camera);
     }

@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MonoGayme.Components;
-using MonoGayme.Entities;
+using MonoGayme.Core.Components;
+using MonoGayme.Core.Entities;
 
-namespace MonoGayme.Controllers;
+namespace MonoGayme.Core.Controllers;
 
 public class EntityController : Component
 {
@@ -71,7 +71,7 @@ public class EntityController : Component
     public void Draw(SpriteBatch batch, GameTime gameTime)
     {
         foreach (Entity entity in Entities)
-        { 
+        {
             entity.Render(batch, gameTime);
         }
     }

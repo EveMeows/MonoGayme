@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MonoGayme.Components;
+using MonoGayme.Core.Components;
 
-namespace MonoGayme.Abstractions;
+namespace MonoGayme.Core.Abstractions;
 
 public interface IDrawableComponent
 {
