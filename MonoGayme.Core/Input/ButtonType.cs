@@ -2,8 +2,8 @@
 
 public enum ButtonType
 {
-    Keyboard,
-    GamePad,
-    Mouse,
-    All
+	Keyboard,
+	GamePad,
+	Mouse,
+	All
 }

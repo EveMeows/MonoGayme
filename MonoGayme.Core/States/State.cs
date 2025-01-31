@@ -8,8 +8,8 @@ namespace MonoGayme.Core.States;
 /// </summary>
 public abstract class State
 {
-    public abstract void LoadContent();
+	public abstract void LoadContent();
 
-    public abstract void Update(GameTime time);
-    public abstract void Draw(GameTime time, SpriteBatch batch);
+	public abstract void Update(GameTime time);
+	public abstract void Draw(GameTime time, SpriteBatch batch);
 }

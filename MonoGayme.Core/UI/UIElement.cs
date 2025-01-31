@@ -6,10 +6,10 @@ namespace MonoGayme.Core.UI;
 
 public interface IElement
 {
-    Color Colour { get; set; }
+	Color Colour { get; set; }
 
-    void RunAction();
+	void RunAction();
 
-    void Update(Vector2 mouse);
-    void Draw(SpriteBatch batch, Camera2D? camera);
+	void Update(Vector2 mouse);
+	void Draw(SpriteBatch batch, Camera2D? camera);
 }

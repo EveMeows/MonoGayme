@@ -5,5 +5,5 @@ namespace MonoGayme.Core.Abstractions;
 
 public interface IDrawableComponent
 {
-    void Draw(SpriteBatch batch, Camera2D? camera = null);
+	void Draw(SpriteBatch batch, Camera2D? camera = null);
 }

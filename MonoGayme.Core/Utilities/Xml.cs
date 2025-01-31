@@ -5,19 +5,19 @@ namespace MonoGayme.Core.Utilities;
 
 public static class Xml
 {
-    public static T Deserialise<T>(string path)
-    {
-        XmlSerializer serialiser = new XmlSerializer(typeof(T));
+	public static T Deserialise<T>(string path)
+	{
+		XmlSerializer serialiser = new XmlSerializer(typeof(T));
 
-        using Stream file = new FileStream(path, FileMode.Open);
-        return (T?)serialiser.Deserialize(file) ?? throw new XmlException("Could not deserialise xml file.");
-    }
+		using Stream file = new FileStream(path, FileMode.Open);
+		return (T?)serialiser.Deserialize(file) ?? throw new XmlException("Could not deserialise xml file.");
+	}
 
-    public static void Serialise<T>(T data, string path)
-    {
-        XmlSerializer serialiser = new XmlSerializer(typeof(T));
+	public static void Serialise<T>(T data, string path)
+	{
+		XmlSerializer serialiser = new XmlSerializer(typeof(T));
 
-        using StreamWriter file = new StreamWriter(path);
-        serialiser.Serialize(file, data);
-    }
+		using StreamWriter file = new StreamWriter(path);
+		serialiser.Serialize(file, data);
+	}
 }

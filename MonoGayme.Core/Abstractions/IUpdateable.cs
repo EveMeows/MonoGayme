@@ -4,5 +4,5 @@ namespace MonoGayme.Core.Abstractions;
 
 public interface IUpdateableComponent
 {
-    void Update(GameTime time);
+	void Update(GameTime time);
 }

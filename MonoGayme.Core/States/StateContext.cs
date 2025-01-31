@@ -8,14 +8,14 @@ namespace MonoGayme.Core.States;
 /// </summary>
 public class StateContext
 {
-    private State? _activeState;
+	private State? _activeState;
 
-    public void SwitchState(State state)
-    {
-        _activeState = state;
-        _activeState.LoadContent();
-    }
+	public void SwitchState(State state)
+	{
+		_activeState = state;
+		_activeState.LoadContent();
+	}
 
-    public void Update(GameTime time) => _activeState?.Update(time);
-    public void Draw(GameTime time, SpriteBatch batch) => _activeState?.Draw(time, batch);
+	public void Update(GameTime time) => _activeState?.Update(time);
+	public void Draw(GameTime time, SpriteBatch batch) => _activeState?.Draw(time, batch);
 }
