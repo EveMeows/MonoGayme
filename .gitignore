@@ -2,3 +2,5 @@
 **/obj
 **/.vs
 **/.idea
+
+**/MonoGayme.Core/MonoGayme.Core.csproj.user
