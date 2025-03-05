@@ -10,11 +10,20 @@ public class VirtualButton
 	public void AddKeyboard(Keys key)
 		=> _keyboard.Add(key);
 
+	public void AddKeyboard(params Keys[] keys)
+		=> _keyboard.AddRange(keys);
+
 	public void AddGamePad(Buttons button)
 		=> _buttons.Add(button);
 
+	public void AddGamePad(params Buttons[] buttons)
+		=> _buttons.AddRange(buttons);
+
 	public void AddMouse(MouseButton button)
 		=> _mouseButtons.Add(button);
+
+	public void AddMouse(params MouseButton[] buttons)
+		=> _mouseButtons.AddRange(buttons);
 
 	public bool IsDown(ButtonType type = ButtonType.All)
 	{
