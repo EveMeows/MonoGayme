@@ -15,6 +15,8 @@ public class TextButton : Button
 	private bool _holding;
 	private bool _ignoreMouse;
 
+	private bool _hasEntered;
+
 	public TextButton(SpriteFont font, string text, Vector2 position, Color colour, bool ignoreMouse = false) : base(ignoreMouse)
 	{
 		Vector2 textSize = font.MeasureString(text);
@@ -66,6 +68,10 @@ public class TextButton : Button
 
 		if (Collision.CheckRectPoint(mouse, _rect))
 		{
+			if (!_hasEntered)
+				OnMouseEnter?.Invoke(this);
+			_hasEntered = true;
+
 			if (Mouse.GetState().LeftButton == ButtonState.Pressed)
 				_holding = true;
 
@@ -76,7 +82,9 @@ public class TextButton : Button
 		}
 		else
 		{
+			OnMouseExit?.Invoke(this);
 			_holding = false;
+			_hasEntered = false;
 		}
 	}
 

@@ -7,6 +7,8 @@ namespace MonoGayme.Core.UI;
 public abstract class Button(bool ignoreMouse) : IElement
 {
 	public Action<Button>? OnClick;
+	public Action<Button>? OnMouseEnter;
+	public Action<Button>? OnMouseExit;
 
 	public Vector2 Position;
 	public Color Colour { get; set; }
