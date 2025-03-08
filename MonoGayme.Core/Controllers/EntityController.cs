@@ -11,7 +11,7 @@ public class EntityController : Component
 	public Action<GraphicsDevice, GameTime, Entity>? OnEntityUpdate;
 
 	private bool _sort;
-	private readonly HashSet<Entity> _toRemove = [];
+	private HashSet<Entity> _toRemove = [];
 
 	/// <summary>
 	/// Add an entity to the controller, and begin sorting by ZIndex.
@@ -36,6 +36,14 @@ public class EntityController : Component
 	public void QueueRemove<T>(T entity) where T : Entity
 	{
 		_toRemove.Add(entity);
+	}
+
+	/// <summary>
+	/// Queue all entities for removal the next frame.
+	/// </summary>
+	public void QueueRemoveAll()
+	{
+		_toRemove = [.. Entities];
 	}
 
 	/// <summary>
