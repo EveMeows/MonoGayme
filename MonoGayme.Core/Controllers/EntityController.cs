@@ -8,7 +8,7 @@ namespace MonoGayme.Core.Controllers;
 public class EntityController : Component
 {
 	public List<Entity> Entities { get; } = [];
-	public Action<GraphicsDevice, GameTime, Entity>? OnEntityUpdate;
+	public EventHandler<EntityUpdateEventArgs>? OnEntityUpdate;
 
 	private bool _sort;
 	private HashSet<Entity> _toRemove = [];
@@ -60,7 +60,7 @@ public class EntityController : Component
 		foreach (Entity entity in Entities)
 		{
 			entity.Process(gameTime);
-			OnEntityUpdate?.Invoke(device, gameTime, entity);
+			OnEntityUpdate?.Invoke(this, new EntityUpdateEventArgs(device, gameTime, entity));
 		}
 
 		if (_toRemove.Count > 0)

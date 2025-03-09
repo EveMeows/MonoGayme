@@ -26,12 +26,12 @@ public class UIController(bool allowNavigation)
 	/// <summary>
 	/// Ran after the active element is changed.
 	/// </summary>
-	public Action<IElement>? OnActiveUpdated;
+	public EventHandler<UpdatedEventArgs>? OnActiveUpdated;
 
 	/// <summary>
 	/// Ran before the active element is changed
 	/// </summary>
-	public Action<IElement>? OnActiveUpdating;
+	public EventHandler<UpdatedEventArgs>? OnActiveUpdating;
 
 	/// <summary>
 	/// Set the keyboard UI navigation keys. Should only be called if allowNavigation is true. 
@@ -71,7 +71,7 @@ public class UIController(bool allowNavigation)
 
 		if (allowNavigation && _elements.Count == 1)
 		{
-			OnActiveUpdated?.Invoke(_elements[_activeIdx]);
+			OnActiveUpdated?.Invoke(this, new UpdatedEventArgs(_elements[_activeIdx]));
 		}
 	}
 
@@ -116,24 +116,24 @@ public class UIController(bool allowNavigation)
 
 			if (InputHelper.IsGamePadPressed(_gpUp.Value))
 			{
-				OnActiveUpdating?.Invoke(_elements[_activeIdx]);
+				OnActiveUpdating?.Invoke(this, new UpdatedEventArgs(_elements[_activeIdx]));
 
 				_activeIdx--;
 				if (_activeIdx < 0)
 					_activeIdx = 0;
 
-				OnActiveUpdated?.Invoke(_elements[_activeIdx]);
+				OnActiveUpdated?.Invoke(this, new UpdatedEventArgs(_elements[_activeIdx]));
 			}
 
 			if (InputHelper.IsGamePadPressed(_gpDown.Value))
 			{
-				OnActiveUpdating?.Invoke(_elements[_activeIdx]);
+				OnActiveUpdating?.Invoke(this, new UpdatedEventArgs(_elements[_activeIdx]));
 
 				_activeIdx++;
 				if (_activeIdx > _elements.Count - 1)
 					_activeIdx = _elements.Count - 1;
 
-				OnActiveUpdated?.Invoke(_elements[_activeIdx]);
+				OnActiveUpdated?.Invoke(this, new UpdatedEventArgs(_elements[_activeIdx]));
 			}
 		}
 
@@ -144,24 +144,24 @@ public class UIController(bool allowNavigation)
 
 			if (InputHelper.IsKeyPressed(_kbUp.Value))
 			{
-				OnActiveUpdating?.Invoke(_elements[_activeIdx]);
+				OnActiveUpdating?.Invoke(this, new UpdatedEventArgs(_elements[_activeIdx]));
 
 				_activeIdx--;
 				if (_activeIdx < 0)
 					_activeIdx = 0;
 
-				OnActiveUpdated?.Invoke(_elements[_activeIdx]);
+				OnActiveUpdated?.Invoke(this, new UpdatedEventArgs(_elements[_activeIdx]));
 			}
 
 			if (InputHelper.IsKeyPressed(_kbDown.Value))
 			{
-				OnActiveUpdating?.Invoke(_elements[_activeIdx]);
+				OnActiveUpdating?.Invoke(this, new UpdatedEventArgs(_elements[_activeIdx]));
 
 				_activeIdx++;
 				if (_activeIdx > _elements.Count - 1)
 					_activeIdx = _elements.Count - 1;
 
-				OnActiveUpdated?.Invoke(_elements[_activeIdx]);
+				OnActiveUpdated?.Invoke(this, new UpdatedEventArgs(_elements[_activeIdx]));
 			}
 		}
 	}
