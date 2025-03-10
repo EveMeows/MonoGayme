@@ -129,6 +129,9 @@ public static class InputHelper
 		};
 	}
 
+	public static Vector2 GetMousePosition()
+		=> new Vector2(_currentMouseState.X, _currentMouseState.Y);
+
 	/// <summary>
 	/// Update the input device state. Must only be run once a frame.
 	/// </summary>

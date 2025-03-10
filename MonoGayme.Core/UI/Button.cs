@@ -10,7 +10,9 @@ public abstract class Button(bool ignoreMouse) : IElement
 	public Action<Button>? OnMouseEnter;
 	public Action<Button>? OnMouseExit;
 
-	public Vector2 Position;
+	public Action<Button>? OnHover;
+
+	public Vector2 Position { get; set; }
 	public Color Colour { get; set; }
 
 	public abstract void Update(Vector2 mouse);

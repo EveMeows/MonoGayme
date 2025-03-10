@@ -6,7 +6,7 @@ using MonoGayme.Core.Entities;
 
 namespace MonoGayme.Core.Controllers;
 
-public class ComponentController(Entity parent)
+public class ComponentController(Entity? parent = null)
 {
 	public List<Component> Components { get; } = [];
 
