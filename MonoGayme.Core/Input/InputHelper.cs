@@ -14,6 +14,9 @@ public static class InputHelper
 	private static MouseState _previousMouseState;
 	private static MouseState _currentMouseState;
 
+	private static int _currentScrollValue;
+	private static int _previousScrollValue;
+
 	static InputHelper()
 	{
 		_currentState = Keyboard.GetState();
@@ -24,6 +27,9 @@ public static class InputHelper
 
 		_currentMouseState = Mouse.GetState();
 		_previousMouseState = _currentMouseState;
+
+		_currentScrollValue = _currentMouseState.ScrollWheelValue;
+		_previousScrollValue = _currentScrollValue;
 	}
 
 	/// <summary>
@@ -118,6 +124,9 @@ public static class InputHelper
 		};
 	}
 
+	/// <summary>
+	/// Check if a mouse key is currently pressed.
+	/// </summary>
 	public static bool IsMousePressed(MouseButton button)
 	{
 		return button switch
@@ -129,8 +138,29 @@ public static class InputHelper
 		};
 	}
 
+	/// <summary>
+	/// Get the mouse position.
+	/// </summary>
+	/// <returns>A Vector2 of the mouse position.</returns>
 	public static Vector2 GetMousePosition()
 		=> new Vector2(_currentMouseState.X, _currentMouseState.Y);
+
+	/// <summary>
+	/// Get the mouse delta.
+	/// </summary>
+	public static Vector2 GetMouseDelta()
+		=> new Vector2(_currentMouseState.X - _previousMouseState.X, _currentMouseState.Y - _previousMouseState.Y);
+
+	/// <summary>
+	/// Get the scroll delta.
+	/// </summary>
+	public static int GetScrollDelta() => _currentScrollValue - _previousScrollValue;
+
+	/// <summary>
+	/// Get the current scroll value.
+	/// </summary>
+	public static int GetScrollValue() => _currentScrollValue;
+
 
 	/// <summary>
 	/// Update the input device state. Must only be run once a frame.
@@ -145,5 +175,8 @@ public static class InputHelper
 
 		_previousMouseState = _currentMouseState;
 		_currentMouseState = Mouse.GetState();
+
+		_previousScrollValue = _currentScrollValue;
+        _currentScrollValue = _currentMouseState.ScrollWheelValue;
 	}
 }
