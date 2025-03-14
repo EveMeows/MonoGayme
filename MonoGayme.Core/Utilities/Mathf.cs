@@ -5,7 +5,7 @@ namespace MonoGayme.Core.Utilities;
 /// <summary>
 /// Global class for misc. math methods.
 /// </summary>
-public static class MathUtility
+public static class Mathf
 {
 	/// <summary>
 	/// Moves a float towards another every frame with an increment. 
