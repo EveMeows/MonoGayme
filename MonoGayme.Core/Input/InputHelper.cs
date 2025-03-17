@@ -138,6 +138,17 @@ public static class InputHelper
 		};
 	}
 
+	public static bool IsMouseUp(MouseButton button)
+	{
+		return button switch
+		{
+			MouseButton.Left => _currentMouseState.LeftButton == ButtonState.Released && _previousMouseState.LeftButton == ButtonState.Pressed,
+			MouseButton.Right => _currentMouseState.RightButton == ButtonState.Released && _previousMouseState.RightButton == ButtonState.Pressed,
+			MouseButton.Middle => _currentMouseState.MiddleButton == ButtonState.Released && _previousMouseState.MiddleButton == ButtonState.Pressed,
+			_ => false
+		};
+	}
+
 	/// <summary>
 	/// Get the mouse position.
 	/// </summary>
